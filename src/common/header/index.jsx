@@ -18,7 +18,30 @@ import {
 import { CSSTransition } from "react-transition-group";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      focused: false,
+    };
+    this.handleInputFocused = this.handleInputFocused.bind(this);
+    this.handleInputBlur = this.handleInputBlur.bind(this);
+  }
+
+  handleInputFocused() {
+    console.log("focused");
+    this.setState({
+      focused: true,
+    });
+  }
+
+  handleInputBlur() {
+    console.log("blur");
+    this.setState({
+      focused: false,
+    });
+  }
   render() {
+    // const { focused } = this.props;
     return (
       <div>
         <HeaderWrapper>
@@ -31,12 +54,22 @@ class Header extends Component {
               <i className="iconfont">&#xe636;</i>
             </NavItem>
             <SearchWrapper>
-              <CSSTransition classNames="slide">
-                <NavSearch></NavSearch>
+              <CSSTransition
+                in={this.state.focused}
+                timeout={200}
+                classNames="slide" // 这里一定要是 classNames ，需要加s
+              >
+                <NavSearch
+                  onFocus={this.handleInputFocused}
+                  onBlur={this.handleInputBlur}
+                  className={this.state.focused ? "focused" : ""}
+                ></NavSearch>
               </CSSTransition>
               <i
-                // className={focused ? "focused iconfont zoom" : "iconfont zoom"}
-                className="iconfont zoom"
+                className={
+                  this.state.focused ? "focused iconfont zoom" : "iconfont zoom"
+                }
+                // className="iconfont zoom"
               >
                 &#xe617;
               </i>
