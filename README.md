@@ -25,3 +25,10 @@
 1. 添加state属性focused
 2. 通过获取失去焦点事件设置focused的true/false来显示搜索框
 3. 使用react-transition-group实现动画效果
+
+### 5. 使用react-redux进行应用数据的管理
+
+1. 创建store
+2. 创建reducer
+3. 使用react-redux替换原来的写法
+4. 把状态组件改成UI组件
