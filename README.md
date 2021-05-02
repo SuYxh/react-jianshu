@@ -110,3 +110,26 @@ npm install immutable
    // immutable对象的set方法,会结合之前immutable对象的值和set的值，返回一个新的对象
    	state.set('focused',true)
    ```
+
+
+### 9. 使用redux-immutable统一数据格式
+
+- 因为获取state的时候还不是immutable对象，可以使用redux-immutable把state变成immutable对象
+
+1. 安装redux-immutable
+
+2. 把combineReducers换成从redux-immutable
+
+   ```js
+   import { combineReducers } from "redux-immutable";
+   ```
+
+3. 使用immutable的getIn方法获取state
+
+   ```js
+   const mapStateProps = state => {
+     return {
+       focused: state.getIn(["header", "focused"])
+     };
+   };
+   ```
