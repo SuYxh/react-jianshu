@@ -21,6 +21,25 @@ import { headerAction } from "./store";
 
 const Header = (props) => {
   console.log("props", props);
+  // 热门搜索样式
+  const getSearchList = (focused) => {
+    if (focused) {
+      return (
+        <SearchInfo>
+          <SearchInfoTitle>
+            热门搜索
+            <SearchInfoSwitch>
+              <i className="iconfont spin">&#xe626;</i>
+              换一换
+            </SearchInfoSwitch>
+          </SearchInfoTitle>
+          <SearchInfoList>
+            <SearchInfoItem>yxh</SearchInfoItem>
+          </SearchInfoList>
+        </SearchInfo>
+      );
+    }
+  };
   return (
     <div>
       <HeaderWrapper>
@@ -51,6 +70,7 @@ const Header = (props) => {
             >
               &#xe617;
             </i>
+            {getSearchList(props.focused)}
           </SearchWrapper>
         </Nav>
         <Addtion>

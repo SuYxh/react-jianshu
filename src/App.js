@@ -13,7 +13,7 @@ class App extends Component {
         <GlobalStyle /> {/* 清理默认样式 */}
         <GlobalStyleIcon />
         <Header />
-        <div className="App">app</div>
+        {/* <div className="App">app</div> */}
       </Provider>
     );
   }
