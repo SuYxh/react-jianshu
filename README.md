@@ -32,3 +32,10 @@
 2. 创建reducer
 3. 使用react-redux替换原来的写法
 4. 把状态组件改成UI组件
+
+
+### 6. 使用combineReducers完成对数据的拆分管理
+
+2. 把store拆分到header中
+3. 用combineReducers组合store
+4. 修改header中state的调用

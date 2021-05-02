@@ -140,7 +140,7 @@ const Header = (props) => {
 
 const mapStateProps = (state) => {
   return {
-    focused: state.focused,
+    focused: state.header.focused,
   };
 };
 
