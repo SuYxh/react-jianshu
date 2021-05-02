@@ -1,20 +1,17 @@
 import * as actionType from "./actionType";
 
-const defaultState = {
+import { fromJS } from "immutable";
+const defaultState = fromJS({
   focused: false,
-};
+});
 
 export const HeaderReducer = (state = defaultState, action) => {
-  if (action.type === actionType.SEARCH_FOCUSE) {
-    return {
-      focused: true,
-    };
+  switch (action.type) {
+    case actionType.SEARCH_FOCUSE:
+      return state.set("focused", true);
+    case actionType.SEARCH_Blur:
+      return state.set("focused", false);
+    default:
+      return state;
   }
-  if (action.type === actionType.SEARCH_Blur) {
-    return {
-      focused: false,
-    };
-  }
-
-  return state;
 };
