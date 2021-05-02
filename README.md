@@ -39,3 +39,9 @@
 2. 把store拆分到header中
 3. 用combineReducers组合store
 4. 修改header中state的调用
+
+
+### 7. actionCreators和actionType拆分action
+
+1. 把reducer、actionCreators、actionType拆分出来汇总到store的index中暴露出去
+2. 调用store中的index修改外部使用

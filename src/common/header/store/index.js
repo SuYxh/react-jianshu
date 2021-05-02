@@ -1,3 +1,5 @@
 import { HeaderReducer } from "./reudcer";
 
-export default HeaderReducer;
+import * as headerAction from "./actionCreators";
+import * as headerActionType from "./actionType";
+export { HeaderReducer, headerAction, headerActionType };

@@ -1,14 +1,16 @@
+import * as actionType from "./actionType";
+
 const defaultState = {
   focused: false,
 };
 
 export const HeaderReducer = (state = defaultState, action) => {
-  if (action.type === "search_focused") {
+  if (action.type === actionType.SEARCH_FOCUSE) {
     return {
       focused: true,
     };
   }
-  if (action.type === "search_blur") {
+  if (action.type === actionType.SEARCH_Blur) {
     return {
       focused: false,
     };

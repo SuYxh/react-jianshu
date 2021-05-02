@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import GlobalStyle from "./style";
 import GlobalStyleIcon from "./statics/iconfont/iconfont";
 import { Provider } from "react-redux";

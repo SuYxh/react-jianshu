@@ -17,6 +17,7 @@ import {
 } from "./style";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
+import { headerAction } from "./store";
 
 // class Header extends Component {
 //   constructor(props) {
@@ -147,16 +148,10 @@ const mapStateProps = (state) => {
 const mapDispatchProps = (dispatch) => {
   return {
     handleInputFocused() {
-      const action = {
-        type: "search_focused",
-      };
-      dispatch(action);
+      dispatch(headerAction.getFocuseAction());
     },
     handleInputBlur() {
-      const action = {
-        type: "search_blur",
-      };
-      dispatch(action);
+      dispatch(headerAction.getBlurAction());
     },
   };
 };
