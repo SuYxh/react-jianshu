@@ -9,6 +9,13 @@ export const getBlurAction = () => ({
   type: actionType.SEARCH_Blur,
 });
 
+export const getMouseEnter = () => ({
+  type: actionType.MOUSE_ENTER,
+});
+export const getMouseLeave = () => ({
+  type: actionType.MOUSE_LEAVE,
+});
+
 export const changeList = (data) => ({
   type: actionType.CHNAGE_LIST,
   data: fromJS(data),
@@ -27,3 +34,8 @@ export const getList = () => {
       });
   };
 };
+
+export const changePage = (page) => ({
+  type: actionType.CHANG_PAGE,
+  page,
+});

@@ -149,3 +149,40 @@ npm install immutable
 5. 发送axios获取到数据(**因为获取的数据不是immutable所以要用fromJS方法包装**)给action然后派发action
 6. 在reducer中使用state.set方法把数据赋值给list
 7. 在header组件拿到lis使用map循环渲染数据
+
+
+### 12. 代码优化微调
+
+1. header使用this.props结构赋值
+2. reducer使用switch语句
+
+### 13. 热门搜索换页功能
+
+- 渲染10条数据
+
+1. 在store声明page,totalPage存当前页和总页数
+2. 获取数据算出多少条赋值给action的totalPage
+3. 在reducer中使用set方法修改stata的totalPage
+4. header中获取page,根据page算出显示10条
+5. 循环list显示10条数据（**list现在是immutable对象,用toJS方法转成js对象才能循环**）
+
+- 换一换的显示隐藏
+
+1. SearchInfo添加onMouseEnter和onMouseLeave事件
+
+2. 在store添加mouseIn属性控制SearchInfo的显示隐藏
+
+3. 触发事件>action>dispatch(action)>reducer来改变mouseIn的值,判断mouseIn为true/false来显示隐藏
+
+   ```js
+    if (focused || mouseIn) {
+         return (
+           <SearchInfo onMouseEnter={handlerMouseEnter}onMouseLeave={handlerMouseLeave} >
+           // ...
+           </SearchInfo>  )};        
+   ```
+
+- 实现换一换
+
+1. 组件中获取totalPage属性出入换一换事件函数page和totalPage进行判断显示页数
+2. aciton存页数>dispatch(action)>reudcer>action.page改变store.page

@@ -21,22 +21,42 @@ import { headerAction } from "./store";
 
 class Header extends Component {
   getSearchList() {
-    const { focused, list } = this.props;
-    if (focused) {
+    const {
+      focused,
+      list,
+      page,
+      totalPage,
+      mouseIn,
+      handlerMouseEnter,
+      handlerMouseLeave,
+      handlerchangePage,
+    } = this.props;
+    const newList = list.toJS();
+    const pageList = [];
+    // 根据page算出显示10条数据
+    if (newList.length) {
+      for (let i = (page - 1) * 10; i < page * 10; i++) {
+        pageList.push(
+          <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+        );
+      }
+    }
+    if (focused || mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo
+          onMouseEnter={handlerMouseEnter}
+          onMouseLeave={handlerMouseLeave}
+        >
           <SearchInfoTitle>
             热门搜索
-            <SearchInfoSwitch>
+            <SearchInfoSwitch
+              onClick={() => handlerchangePage(page, totalPage)}
+            >
               <i className="iconfont spin">&#xe626;</i>
               换一换
             </SearchInfoSwitch>
           </SearchInfoTitle>
-          <SearchInfoList>
-            {list.map((item) => {
-              return <SearchInfoItem key={item}>{item}</SearchInfoItem>;
-            })}
-          </SearchInfoList>
+          <SearchInfoList>{pageList}</SearchInfoList>
         </SearchInfo>
       );
     }
@@ -94,6 +114,9 @@ const mapStateProps = (state) => {
     // focused: state.get("header").get("focused"),
     focused: state.getIn(["header", "focused"]),
     list: state.getIn(["header", "list"]),
+    page: state.getIn(["header", "page"]),
+    totalPage: state.getIn(["header", "totalPage"]),
+    mouseIn: state.getIn(["header", "mouseIn"]),
   };
 };
 
@@ -105,6 +128,28 @@ const mapDispatchProps = (dispatch) => {
     },
     handleInputBlur() {
       dispatch(headerAction.getBlurAction());
+    },
+    handlerMouseEnter() {
+      dispatch(headerAction.getMouseEnter());
+    },
+    handlerMouseLeave() {
+      dispatch(headerAction.getMouseLeave());
+    },
+    handlerchangePage(page, totalPage, spin) {
+      // console.log(spin);
+      // // 每次点击让角度旋转360
+      // let orginAngle = spin.style.transform.replace(/[^0-9]/gi, "");
+      // if (orginAngle) {
+      //   orginAngle = parseInt(orginAngle, 10);
+      // } else {
+      //   orginAngle = 0;
+      // }
+      // spin.style.transform = `rotate(${orginAngle + 360}deg)`;
+      if (page < totalPage) {
+        dispatch(headerAction.changePage(page + 1));
+      } else {
+        dispatch(headerAction.changePage(1));
+      }
     },
   };
 };
