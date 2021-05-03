@@ -138,3 +138,14 @@ npm install immutable
 
 1. 完成热门搜索样式布局
 2. 根据focused属性来决定是否显示
+
+
+### 11. ajax获取推荐数据
+
+1. 把header组件从UI组件改成普通组件
+2. 安装redux-thunk 并且使用
+3. 当失去焦点的时候调用actionCreator里的getList方法实现异步操作
+4. public目录下定义模拟数据
+5. 发送axios获取到数据(**因为获取的数据不是immutable所以要用fromJS方法包装**)给action然后派发action
+6. 在reducer中使用state.set方法把数据赋值给list
+7. 在header组件拿到lis使用map循环渲染数据
